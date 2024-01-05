@@ -9,8 +9,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApp.Data;
 using WebApp.Models;
 using NuGet.DependencyResolver;
+using Microsoft.AspNetCore.Authorization;
+
 namespace WebApp.Pages.Courses
 {
+    [Authorize(Roles = "Admin")]
+
     public class CreateModel : PageModel
     {
         private readonly WebApp.Data.WebAppContext _context;
