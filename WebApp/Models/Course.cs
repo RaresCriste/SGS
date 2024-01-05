@@ -2,6 +2,7 @@
 
 namespace WebApp.Models
 {
+    //blablabla
     public class Course
     {
         public int CourseID { get; set; }
