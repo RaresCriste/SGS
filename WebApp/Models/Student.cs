@@ -24,7 +24,7 @@ namespace WebApp.Models
         public string? Phone { get; set; }
         public ICollection<Enrollment>? Enrollments { get; set; }
         [Display(Name = "Full Name")]
-        public string FullName
+        public string FullName2
         {
             get
             {

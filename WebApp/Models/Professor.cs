@@ -23,7 +23,7 @@ namespace WebApp.Models
         [Display(Name = "Telefon")]
         public string Phone { get; set; }
         public ICollection<Course>? Courses { get; set; }
-        [Display(Name = "Full Name")]
+        [Display(Name = "Nume profesor")]
         public string FullName
         {
             get

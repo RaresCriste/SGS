@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.Enrollment[0].Course.CourseName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Enrollment[0].Student.FullName)
+                @Html.DisplayNameFor(model => model.Enrollment[0].Student.FullName2)
             </th>
             <th></th>
         </tr>
@@ -35,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Course.CourseName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Student.FullName)
+                @Html.DisplayFor(modelItem => item.Student.FullName2)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.EnrollmentID">Edit</a> |

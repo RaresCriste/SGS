@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id:int?}"
 @model WebApp.Pages.Professors.IndexModel
 
 @{
@@ -35,8 +35,13 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Professor) {
-        <tr>
+@foreach (var item in Model.ProfessorData.Professors) {
+            string selectedRow = "";
+            if (item.ProfessorID == Model.ProfessorID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr classs="@selectedRow">
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
@@ -56,6 +61,7 @@
                 @Html.DisplayFor(modelItem => item.Phone)
             </td>
             <td>
+                <a asp-page="./Index" asp-route-id="@item.ProfessorID">Select</a> |
                 <a asp-page="./Edit" asp-route-id="@item.ProfessorID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ProfessorID">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.ProfessorID">Delete</a>
@@ -64,3 +70,32 @@
 }
     </tbody>
 </table>
+@if (Model.ProfessorData.Courses != null)
+{
+    <h3>Cursuri sustinute de profesorul:</h3>
+    <table class="table">
+
+        @foreach (var item in Model.ProfessorData.Professors)
+        {
+            string selectedRow = "";
+            if (item.ProfessorID == Model.ProfessorID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+
+                <td>
+                    @{
+                        foreach (var b in item.Courses)
+                        {
+
+                            @b.CourseName @:  @b.Credits credite  @b.NoClasses ore
+
+                            <br />
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}

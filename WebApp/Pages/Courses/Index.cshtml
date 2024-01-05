@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id:int?}"
 @model WebApp.Pages.Courses.IndexModel
 
 @{
@@ -25,15 +25,20 @@
             <th>
                 @Html.DisplayNameFor(model => model.Course[0].Description)
             </th>
-            <th>
+           <!--<th>
                 @Html.DisplayNameFor(model => model.Course[0].Professor.FullName)
-            </th>
+            </th>-->
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Course) {
-        <tr>
+@foreach (var item in Model.CourseData.Courses) {
+            string selectedRow = "";
+            if (item.CourseID == Model.CourseID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
             <td>
                 @Html.DisplayFor(modelItem => item.CourseName)
             </td>
@@ -46,10 +51,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+           <!-- <td>
                 @Html.DisplayFor(modelItem => item.Professor.FullName)
-            </td>
+            </td>-->
             <td>
+                <a asp-page="./Index" asp-route-id="@item.CourseID">Select</a> |
                 <a asp-page="./Edit" asp-route-id="@item.CourseID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.CourseID">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.CourseID">Delete</a>
@@ -58,3 +64,24 @@
 }
     </tbody>
 </table>
+@if (Model.CourseData.Enrollments != null)
+{
+    <h3>Studenti inscrisi la cursul:</h3>
+    <table class="table">
+
+        @foreach (var item in Model.CourseData.Enrollments)
+        {
+            string selectedRow = "";
+            if (item.CourseID == Model.CourseID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+
+                <td>
+                    @item.Student.FullName2
+                </td>
+            </tr>
+        }
+    </table>
+}
